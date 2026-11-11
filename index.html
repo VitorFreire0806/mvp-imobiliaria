@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Atlântica — Imobiliária · Comprar, Vender e Arrendar Casa</title>
+<meta name="description" content="Imobiliária em Lisboa, Cascais, Sintra e Porto. Apartamentos e moradias para comprar e arrendar. Avaliação gratuita do seu imóvel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --sand:#f6f2ec;
+    --sand-2:#ebe3d7;
+    --navy:#14213d;
+    --navy-2:#1f3058;
+    --gold:#c49a5a;
+    --gold-dark:#a87f42;
+    --ink:#1a2233;
+    --muted:#667085;
+    --line:#e7e2da;
+    --shadow:0 18px 44px rgba(20,33,61,.10);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  img{display:block;width:100%;height:100%;object-fit:cover;color:transparent}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:600;line-height:1.12}
+  .container{width:min(1560px,92%);margin-inline:auto}
+  section{padding:104px 0}
+  .eyebrow{display:inline-block;font-size:.76rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:50px;flex-wrap:wrap}
+  .section-head h2{font-size:clamp(2.2rem,4vw,3.4rem);max-width:760px}
+  .section-head p{color:var(--muted);max-width:520px;margin-top:12px;font-size:1.05rem}
+  .center{text-align:center;display:block}
+  .center h2,.center p{margin-inline:auto}
+  .ph{background:linear-gradient(135deg,var(--sand),var(--sand-2));overflow:hidden;position:relative}
+  .ph img{transition:transform .9s ease}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 28px;border-radius:10px;font-weight:600;font-size:.98rem;border:1px solid transparent;cursor:pointer;transition:background .25s,color .25s,transform .2s;font-family:inherit}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:var(--navy-2)}
+  .btn-gold{background:var(--gold);color:#fff}
+  .btn-gold:hover{background:var(--gold-dark)}
+  .btn-line{border-color:var(--navy);color:var(--navy);background:transparent}
+  .btn-line:hover{background:var(--navy);color:#fff}
+  .btn-wa{background:#25d366;color:#fff}
+  .btn-wa:hover{background:#1eb457}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;gap:20px}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo .mark{width:44px;height:44px;border-radius:12px;background:var(--navy);color:var(--gold);display:grid;place-items:center;font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:700}
+  .logo strong{font-family:"Playfair Display",serif;font-size:1.4rem;display:block;line-height:1.1}
+  .logo small{font-size:.66rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .nav ul{display:flex;gap:30px;list-style:none;font-weight:500}
+  .nav ul a:hover{color:var(--gold-dark)}
+  .nav-right{display:flex;align-items:center;gap:12px}
+  .nav-right .btn{padding:12px 22px}
+  .menu-toggle{display:none;background:none;border:0;font-size:1.8rem;cursor:pointer;color:var(--ink)}
+
+
+  /* IDIOMAS */
+  .lang{position:relative}
+  .lang-btn{display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-weight:700;font-size:.85rem;cursor:pointer;transition:.25s}
+  .lang-btn:hover{border-color:var(--gold)}
+  .flag{width:22px;height:16px;object-fit:cover;border-radius:3px;box-shadow:0 0 0 1px rgba(0,0,0,.08);flex:none}
+  .caret{font-size:.6rem;opacity:.7}
+  .nav ul.lang-menu{display:block;gap:0;font-size:.92rem;letter-spacing:0;text-transform:none}
+  .lang-menu{position:absolute;right:0;top:calc(100% + 12px);background:#fff;border-radius:18px;box-shadow:0 18px 44px rgba(58,42,39,.16);list-style:none;padding:8px;min-width:210px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:.25s;z-index:70}
+  .lang.open .lang-menu{opacity:1;visibility:visible;transform:none}
+  .lang-menu button{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border:0;background:none;border-radius:12px;font:inherit;color:var(--ink);cursor:pointer;text-align:left}
+  .lang-menu button:hover{background:var(--sand)}
+  .lang-menu button.active{background:var(--line);font-weight:700}
+
+  /* HERO */
+  .hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;padding:120px 0 70px;color:#fff;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:-2}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(20,33,61,.25) 0%,rgba(20,33,61,.55) 55%,rgba(20,33,61,.88) 100%)}
+  .hero .eyebrow{color:#e8c48d}
+  .hero h1{font-size:clamp(2.8rem,6vw,5.6rem);max-width:1000px;margin-bottom:18px}
+  .hero h1 em{color:#e8c48d;font-style:italic}
+  .hero p{font-size:1.15rem;max-width:620px;opacity:.92;margin-bottom:36px}
+
+  /* PESQUISA */
+  .search{background:#fff;color:var(--ink);border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.25);padding:10px;max-width:1240px}
+  .deal-tabs{display:flex;gap:6px;padding:6px 6px 12px}
+  .deal-tab{border:0;background:transparent;padding:10px 20px;border-radius:10px;font:inherit;font-weight:600;color:var(--muted);cursor:pointer}
+  .deal-tab.active{background:var(--navy);color:#fff}
+  .search-row{display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:10px;padding:0 6px 6px}
+  .s-field{display:flex;flex-direction:column;gap:4px;background:var(--sand);border-radius:12px;padding:10px 16px}
+  .s-field label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .s-field select{border:0;background:transparent;font:inherit;font-weight:600;color:var(--ink);outline:none;cursor:pointer}
+  .search-row .btn{height:100%;min-height:62px;padding:0 34px}
+
+  /* NÚMEROS */
+  .stats{background:var(--navy);color:#fff;padding:54px 0}
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+  .stats-row div{border-right:1px solid rgba(255,255,255,.12)}
+  .stats-row div:last-child{border-right:0}
+  .stats-row strong{display:block;font-family:"Playfair Display",serif;font-size:2.8rem;color:#e8c48d;line-height:1.1}
+  .stats-row span{opacity:.8}
+
+  /* IMÓVEIS */
+  .props{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  .prop{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+  .prop:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .prop:hover img{transform:scale(1.06)}
+  .prop .ph{height:clamp(220px,15vw,270px)}
+  .prop .badges{position:absolute;top:14px;left:14px;display:flex;gap:6px;z-index:2}
+  .badge{background:#fff;color:var(--navy);font-size:.74rem;font-weight:700;padding:5px 10px;border-radius:6px}
+  .badge.deal{background:var(--navy);color:#fff}
+  .badge.gold{background:var(--gold);color:#fff}
+  .badge.grey{background:#6b7280;color:#fff}
+  .energy{position:absolute;right:14px;bottom:14px;z-index:2;background:#2f9e44;color:#fff;font-size:.74rem;font-weight:800;padding:4px 9px;border-radius:6px}
+  .energy.b{background:#74b816}.energy.c{background:#f59f00}
+  .p-body{padding:20px 22px 22px;display:flex;flex-direction:column;flex:1}
+  .p-price{font-family:"Playfair Display",serif;font-size:1.65rem;font-weight:700;color:var(--navy)}
+  .p-price small{font-family:Inter,sans-serif;font-size:.85rem;color:var(--muted);font-weight:500}
+  .p-body h3{font-family:Inter,sans-serif;font-size:1.06rem;font-weight:600;margin:4px 0 2px}
+  .p-loc{color:var(--muted);font-size:.92rem}
+  .p-meta{display:flex;gap:16px;color:var(--ink);font-size:.9rem;margin:16px 0 18px;padding-top:14px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .p-meta span{display:flex;align-items:center;gap:6px}
+  .prop .btn{margin-top:auto;width:100%;padding:12px}
+  .prop.hide{display:none}
+  .no-results{display:none;text-align:center;color:var(--muted);padding:40px;border:1px dashed var(--line);border-radius:18px;grid-column:1/-1}
+  .no-results.show{display:block}
+
+  /* SERVIÇOS */
+  .services{background:var(--sand)}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .svc{background:#fff;border-radius:18px;padding:34px 30px;transition:transform .3s,box-shadow .3s}
+  .svc:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+  .svc .ic{width:56px;height:56px;border-radius:14px;background:var(--navy);color:#fff;display:grid;place-items:center;font-size:1.5rem;margin-bottom:20px}
+  .svc h3{font-size:1.45rem;margin-bottom:10px}
+  .svc p{color:var(--muted)}
+
+  /* AVALIAÇÃO */
+  .valuation{display:grid;grid-template-columns:1.1fr 1fr;border-radius:24px;overflow:hidden;background:var(--navy);color:#fff}
+  .valuation .ph{min-height:620px}
+  .val-form{padding:clamp(34px,5vw,70px)}
+  .val-form .eyebrow{color:#e8c48d}
+  .val-form h2{font-size:clamp(2.2rem,3.8vw,3.2rem);margin-bottom:12px}
+  .val-form > p{opacity:.85;margin-bottom:28px}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field.full{grid-column:span 2}
+  .field label{font-size:.78rem;font-weight:600;letter-spacing:.06em;opacity:.85}
+  .field input,.field select,.field textarea{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:13px 14px;font:inherit;color:#fff;outline:none;color-scheme:dark}
+  .field select option{background:var(--navy)}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold)}
+  .field textarea{min-height:80px;resize:vertical}
+  .val-form .btn{width:100%;margin-top:22px}
+  .form-note{text-align:center;opacity:.7;font-size:.85rem;margin-top:12px}
+
+  /* EQUIPA */
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+  .agent .ph{height:clamp(340px,24vw,440px);border-radius:18px;margin-bottom:16px}
+  .agent h3{font-size:1.35rem}
+  .agent span{display:block;color:var(--gold-dark);font-weight:600;font-size:.9rem}
+  .agent a{display:inline-block;margin-top:8px;color:var(--muted);font-size:.92rem}
+  .agent a:hover{color:var(--navy)}
+
+  /* OPINIÕES */
+  .reviews{background:var(--sand)}
+  .r-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:#fff;border-radius:18px;padding:32px}
+  .review .stars{color:var(--gold);letter-spacing:3px;margin-bottom:12px}
+  .review p{font-family:"Playfair Display",serif;font-size:1.22rem;font-style:italic;line-height:1.5;margin-bottom:18px}
+  .review strong{display:block}
+  .review small{color:var(--muted)}
+
+  /* FAQ */
+  .faq{max-width:1100px;margin:0 auto;display:grid;gap:12px}
+  .faq details{border:1px solid var(--line);border-radius:14px;padding:22px 26px}
+  .faq summary{font-weight:600;font-size:1.06rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--gold);font-size:1.5rem;line-height:1}
+  .faq details[open] summary::after{content:"–"}
+  .faq details p{color:var(--muted);margin-top:10px}
+
+  /* CONTACTOS */
+  .contact{background:var(--sand)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;align-items:stretch}
+  .c-card{background:#fff;border-radius:20px;padding:40px}
+  .c-card h2{font-size:2.2rem;margin-bottom:24px}
+  .c-line{display:flex;gap:14px;margin-bottom:20px}
+  .c-line .ic{font-size:1.3rem}
+  .c-line strong{display:block}
+  .c-line span{color:var(--muted)}
+  .hours{width:100%;border-collapse:collapse}
+  .hours td{padding:3px 0;color:var(--muted)}
+  .hours td:last-child{text-align:right;color:var(--ink);font-weight:600}
+  .hours tr.today td{color:var(--gold-dark);font-weight:700}
+  .map{border-radius:20px;overflow:hidden;min-height:440px}
+  .map iframe{width:100%;height:100%;min-height:440px;border:0}
+
+  footer{background:var(--navy);color:#b8c0d0;padding:60px 0 28px}
+  .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:34px}
+  footer .logo strong{color:#fff}
+  footer p{margin-top:14px;max-width:420px}
+  footer h4{color:#fff;margin-bottom:12px}
+  footer li{list-style:none;margin-bottom:8px}
+  footer a:hover{color:#e8c48d}
+  .legal{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:.85rem}
+
+  .wa-float{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:1.7rem;box-shadow:0 10px 24px rgba(37,211,102,.45);z-index:60;transition:transform .2s}
+  .wa-float:hover{transform:scale(1.08)}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:1250px){
+    .props,.svc-grid,.team-grid{grid-template-columns:repeat(3,1fr)}
+    .nav ul{gap:20px}
+  }
+  @media (max-width:1000px){
+    .props,.svc-grid,.team-grid{grid-template-columns:repeat(2,1fr)}
+    .r-grid{grid-template-columns:1fr}
+    .valuation,.contact-grid{grid-template-columns:1fr}
+    .valuation .ph{min-height:300px}
+    .search-row{grid-template-columns:1fr 1fr}
+    .search-row .btn{grid-column:span 2}
+    .stats-row{grid-template-columns:repeat(2,1fr);row-gap:26px}
+    .stats-row div:nth-child(2){border-right:0}
+    .foot{grid-template-columns:1fr}
+  }
+  @media (max-width:900px){
+    .nav ul{display:none}
+    .nav ul.open{display:flex;flex-direction:column;position:absolute;top:82px;left:0;right:0;background:#fff;padding:22px 6%;gap:16px;box-shadow:0 12px 20px rgba(0,0,0,.06)}
+    .menu-toggle{display:block}
+    .nav-right .btn{display:none}
+    section{padding:76px 0}
+  }
+  @media (max-width:600px){
+    .props,.svc-grid,.team-grid,.fields,.search-row{grid-template-columns:1fr}
+    .field.full,.search-row .btn{grid-column:span 1}
+    .logo small{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#inicio" class="logo"><span class="mark">CA</span><span><strong>Casa Atlântica</strong><small data-i18n="k0">Imobiliária</small></span></a>
+    <ul id="menu">
+      <li><a href="#imoveis" data-i18n="k1">Imóveis</a></li>
+      <li><a href="#servicos" data-i18n="k2">Serviços</a></li>
+      <li><a href="#avaliar" data-i18n="k3">Vender casa</a></li>
+      <li><a href="#equipa" data-i18n="k4">Equipa</a></li>
+      <li><a href="#contactos" data-i18n="k5">Contactos</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang" id="lang">
+        <button type="button" class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+          <img class="flag" id="langFlag" src="https://flagcdn.com/w40/pt.png" alt="" width="22" height="16"><span id="langCode">PT</span><span class="caret">▾</span>
+        </button>
+        <ul class="lang-menu" id="langMenu">
+          <li><button type="button" data-lang="pt"><img class="flag" src="https://flagcdn.com/w40/pt.png" alt="" width="22" height="16">Português</button></li>
+          <li><button type="button" data-lang="en"><img class="flag" src="https://flagcdn.com/w40/gb.png" alt="" width="22" height="16">English</button></li>
+          <li><button type="button" data-lang="es"><img class="flag" src="https://flagcdn.com/w40/es.png" alt="" width="22" height="16">Español</button></li>
+          <li><button type="button" data-lang="fr"><img class="flag" src="https://flagcdn.com/w40/fr.png" alt="" width="22" height="16">Français</button></li>
+          <li><button type="button" data-lang="it"><img class="flag" src="https://flagcdn.com/w40/it.png" alt="" width="22" height="16">Italiano</button></li>
+          <li><button type="button" data-lang="de"><img class="flag" src="https://flagcdn.com/w40/de.png" alt="" width="22" height="16">Deutsch</button></li>
+          <li><button type="button" data-lang="uk"><img class="flag" src="https://flagcdn.com/w40/ua.png" alt="" width="22" height="16">Українська</button></li>
+          <li><button type="button" data-lang="ru"><img class="flag" src="https://flagcdn.com/w40/ru.png" alt="" width="22" height="16">Русский</button></li>
+          <li><button type="button" data-lang="ja"><img class="flag" src="https://flagcdn.com/w40/jp.png" alt="" width="22" height="16">日本語</button></li>
+          <li><button type="button" data-lang="zh"><img class="flag" src="https://flagcdn.com/w40/cn.png" alt="" width="22" height="16">中文</button></li>
+        </ul>
+      </div>
+
+      <a href="#avaliar" class="btn btn-navy" data-i18n="k6">Avaliação gratuita</a>
+      <button class="menu-toggle" aria-label="Abrir menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO + PESQUISA -->
+<section class="hero" id="inicio">
+  <div class="hero-bg ph"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2400&q=80" alt="Moradia moderna"></div>
+  <div class="container">
+    <span class="eyebrow" data-i18n="k7">Imobiliária em Lisboa, Cascais, Sintra e Porto</span>
+    <h1 data-i18n="k8">Encontre a casa onde a sua <em>vida acontece.</em></h1>
+    <p data-i18n="k9">Apartamentos e moradias selecionados, com acompanhamento personalizado do primeiro contacto até à entrega das chaves.</p>
+    <div class="search" id="search">
+      <div class="deal-tabs">
+        <button class="deal-tab active" data-deal="venda" data-i18n="k10">Comprar</button>
+        <button class="deal-tab" data-deal="arrendamento" data-i18n="k11">Arrendar</button>
+      </div>
+      <div class="search-row">
+        <div class="s-field"><label for="s-loc" data-i18n="k12">Localização</label>
+          <select id="s-loc"><option value="all" data-i18n="k13">Todas as zonas</option><option value="lisboa">Lisboa</option><option value="cascais">Cascais</option><option value="sintra">Sintra</option><option value="porto">Porto</option></select></div>
+        <div class="s-field"><label for="s-type" data-i18n="k14">Tipo de imóvel</label>
+          <select id="s-type"><option value="all" data-i18n="k15">Todos</option><option value="apartamento" data-i18n="k16">Apartamento</option><option value="moradia" data-i18n="k17">Moradia</option></select></div>
+        <div class="s-field"><label for="s-beds" data-i18n="k18">Quartos</label>
+          <select id="s-beds"><option value="0" data-i18n="k19">Qualquer</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></div>
+        <button class="btn btn-gold" id="s-btn" data-i18n="k20">🔍 Pesquisar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NÚMEROS -->
+<section class="stats">
+  <div class="container stats-row">
+    <div><strong>+1.200</strong><span data-i18n="k21">imóveis vendidos</span></div>
+    <div><strong>20</strong><span data-i18n="k22">anos de experiência</span></div>
+    <div><strong>98%</strong><span data-i18n="k23">clientes satisfeitos</span></div>
+    <div><strong>4</strong><span data-i18n="k24">lojas em Portugal</span></div>
+  </div>
+</section>
+
+<!-- IMÓVEIS -->
+<section id="imoveis">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow" data-i18n="k25">Imóveis em destaque</span><h2 data-i18n="k26">Casas escolhidas a dedo</h2></div>
+      <p data-i18n="k27">Uma seleção dos imóveis mais procurados do momento. Use a pesquisa acima para filtrar por zona, tipo e número de quartos.</p>
+    </div>
+    <div class="props" id="props">
+      <article class="prop reveal" data-deal="venda" data-type="apartamento" data-loc="lisboa" data-beds="2" data-ref="CA-1021 · Apartamento T2 com vista rio · Parque das Nações">
+        <div class="ph"><div class="badges"><span class="badge deal" data-i18n="k28">Venda</span><span class="badge gold" data-i18n="k29">Novo</span></div><span class="energy">A</span><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=75" alt=""></div>
+        <div class="p-body"><div class="p-price">495.000 €</div><h3 data-i18n="k30">Apartamento T2 com vista rio</h3><div class="p-loc">📍 Lisboa · Parque das Nações</div>
+        <div class="p-meta"><span>🛏 2</span><span>🛁 2</span><span>📐 98 m²</span></div><button class="btn btn-line ask" data-i18n="k31">Pedir informações</button></div>
+      </article>
+      <article class="prop reveal" data-deal="venda" data-type="moradia" data-loc="cascais" data-beds="4" data-ref="CA-1034 · Moradia T4 com piscina · Birre">
+        <div class="ph"><div class="badges"><span class="badge deal" data-i18n="k28">Venda</span><span class="badge gold" data-i18n="k32">Exclusivo</span></div><span class="energy">A+</span><img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=75" alt=""></div>
+        <div class="p-body"><div class="p-price">1.450.000 €</div><h3 data-i18n="k33">Moradia T4 com piscina</h3><div class="p-loc">📍 Cascais · Birre</div>
+        <div class="p-meta"><span>🛏 4</span><span>🛁 4</span><span>📐 320 m²</span></div><button class="btn btn-line ask" data-i18n="k31">Pedir informações</button></div>
+      </article>
+      <article class="prop reveal" data-deal="arrendamento" data-type="apartamento" data-loc="lisboa" data-beds="1" data-ref="CA-2012 · Apartamento T1 renovado · Príncipe Real">
+        <div class="ph"><div class="badges"><span class="badge deal" data-i18n="k34">Arrendamento</span></div><span class="energy c">C</span><img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=75" alt=""></div>
+        <div class="p-body"><div class="p-price">1.650 € <small data-i18n="k35">/mês</small></div><h3 data-i18n="k36">Apartamento T1 renovado</h3><div class="p-loc">📍 Lisboa · Príncipe Real</div>
+        <div class="p-meta"><span>🛏 1</span><span>🛁 1</span><span>📐 62 m²</span></div><button class="btn btn-line ask" data-i18n="k31">Pedir informações</button></div>
+      </article>
+      <article class="prop reveal" data-deal="venda" data-type="apartamento" data-loc="porto" data-beds="3" data-ref="CA-1047 · Apartamento T3 junto ao mar · Foz do Douro">
+        <div class="ph"><div class="badges"><span class="badge deal" data-i18n="k28">Venda</span></div><span class="energy b">B</span><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=75" alt=""></div>
+        <div class="p-body"><div class="p-price">620.000 €</div><h3 data-i18n="k37">Apartamento T3 junto ao mar</h3><div class="p-loc">📍 Porto · Foz do Douro</div>
+        <div class="p-meta"><span>🛏 3</span><span>🛁 2</span><span>📐 135 m²</span></div><button class="btn btn-line ask" data-i18n="k31">Pedir informações</button></div>
+      </article>
+      <article class="prop reveal" data-deal="venda" data-type="moradia" data-loc="sintra" data-beds="3" data-ref="CA-1052 · Moradia T3 com jardim · Colares">
+        <div class="ph"><div class="badges"><span class="badge deal" data-i18n="k28">Venda</span><span class="badge grey" data-i18n="k38">Reservado</span></div><span class="energy b">B</span><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=75" alt=""></div>
+        <div class="p-body"><div class="p-price">780.000 €</div><h3 data-i18n="k39">Moradia T3 com jardim</h3><div class="p-loc">📍 Sintra · Colares</div>
+        <div class="p-meta"><span>🛏 3</span><span>🛁 3</span><span>📐 210 m²</span></div><button class="btn btn-line ask" data-i18n="k31">Pedir informações</button></div>
+      </article>
+      <article class="prop reveal" data-deal="arrendamento" data-type="moradia" data-loc="cascais" data-beds="3" data-ref="CA-2025 · Moradia T3 mobilada · Estoril">
+        <div class="ph"><div class="badges"><span class="badge deal" data-i18n="k34">Arrendamento</span></div><span class="energy b">B</span><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75" alt=""></div>
+        <div class="p-body"><div class="p-price">3.900 € <small data-i18n="k35">/mês</small></div><h3 data-i18n="k40">Moradia T3 mobilada</h3><div class="p-loc">📍 Cascais · Estoril</div>
+        <div class="p-meta"><span>🛏 3</span><span>🛁 3</span><span>📐 190 m²</span></div><button class="btn btn-line ask" data-i18n="k31">Pedir informações</button></div>
+      </article>
+      <article class="prop reveal" data-deal="venda" data-type="apartamento" data-loc="lisboa" data-beds="3" data-ref="CA-1063 · Penthouse T3 com terraço · Avenidas Novas">
+        <div class="ph"><div class="badges"><span class="badge deal" data-i18n="k28">Venda</span><span class="badge gold" data-i18n="k32">Exclusivo</span></div><span class="energy">A</span><img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=800&q=75" alt=""></div>
+        <div class="p-body"><div class="p-price">1.180.000 €</div><h3 data-i18n="k41">Penthouse T3 com terraço</h3><div class="p-loc">📍 Lisboa · Avenidas Novas</div>
+        <div class="p-meta"><span>🛏 3</span><span>🛁 3</span><span>📐 165 m²</span></div><button class="btn btn-line ask" data-i18n="k31">Pedir informações</button></div>
+      </article>
+      <article class="prop reveal" data-deal="arrendamento" data-type="apartamento" data-loc="porto" data-beds="2" data-ref="CA-2031 · Apartamento T2 no centro · Baixa do Porto">
+        <div class="ph"><div class="badges"><span class="badge deal" data-i18n="k34">Arrendamento</span><span class="badge gold" data-i18n="k29">Novo</span></div><span class="energy c">C</span><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=75" alt=""></div>
+        <div class="p-body"><div class="p-price">1.350 € <small data-i18n="k35">/mês</small></div><h3 data-i18n="k42">Apartamento T2 no centro</h3><div class="p-loc">📍 Porto · Baixa</div>
+        <div class="p-meta"><span>🛏 2</span><span>🛁 1</span><span>📐 85 m²</span></div><button class="btn btn-line ask" data-i18n="k31">Pedir informações</button></div>
+      </article>
+      <div class="no-results" id="noResults" data-i18n="k43">Não encontrámos imóveis com estes critérios. Fale connosco: temos mais imóveis que ainda não estão publicados.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section class="services" id="servicos">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow" data-i18n="k2">Serviços</span><h2 data-i18n="k44">Tratamos de tudo por si</h2></div>
+      <p data-i18n="k45">Uma equipa completa para que comprar, vender ou arrendar seja simples, seguro e sem stress.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal"><div class="ic">🏷️</div><h3 data-i18n="k46">Vender</h3><p data-i18n="k47">Avaliação gratuita, fotografia profissional, visitas virtuais e divulgação nos principais portais.</p></div>
+      <div class="svc reveal"><div class="ic">🔑</div><h3 data-i18n="k10">Comprar</h3><p data-i18n="k48">Encontramos o imóvel certo para si e acompanhamos todas as visitas e negociações.</p></div>
+      <div class="svc reveal"><div class="ic">🏠</div><h3 data-i18n="k11">Arrendar</h3><p data-i18n="k49">Seleção de inquilinos, contratos e gestão do arrendamento com total tranquilidade.</p></div>
+      <div class="svc reveal"><div class="ic">🏦</div><h3 data-i18n="k50">Crédito habitação</h3><p data-i18n="k51">Comparamos propostas de vários bancos para conseguir as melhores condições de financiamento.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÃO -->
+<section id="avaliar">
+  <div class="container">
+    <div class="valuation reveal">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=75" alt=""></div>
+      <form class="val-form" id="valForm">
+        <span class="eyebrow" data-i18n="k52">Quer vender?</span>
+        <h2 data-i18n="k53">Quanto vale a sua casa?</h2>
+        <p data-i18n="k54">Peça uma avaliação gratuita e sem compromisso. Um consultor da sua zona entra em contacto em menos de 24 horas.</p>
+        <div class="fields">
+          <div class="field"><label for="v-name" data-i18n="k55">Nome</label><input id="v-name" required autocomplete="name"></div>
+          <div class="field"><label for="v-loc" data-i18n="k56">Localização do imóvel</label><input id="v-loc" required></div>
+          <div class="field"><label for="v-type" data-i18n="k14">Tipo de imóvel</label>
+            <select id="v-type"><option value="Apartamento" data-i18n="k16">Apartamento</option><option value="Moradia" data-i18n="k17">Moradia</option><option value="Terreno" data-i18n="k57">Terreno</option><option value="Loja ou escritório" data-i18n="k58">Loja ou escritório</option></select></div>
+          <div class="field"><label for="v-rooms" data-i18n="k59">Tipologia</label>
+            <select id="v-rooms"><option>T0</option><option>T1</option><option selected>T2</option><option>T3</option><option>T4</option><option>T5+</option></select></div>
+          <div class="field full"><label for="v-notes" data-i18n="k60">Mensagem (opcional)</label><textarea id="v-notes"></textarea></div>
+        </div>
+        <button type="submit" class="btn btn-wa" data-i18n="k61">💬 Pedir avaliação por WhatsApp</button>
+        <p class="form-note" data-i18n="k62">Os seus dados são usados apenas para responder ao seu pedido.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPA -->
+<section id="equipa" style="padding-top:0">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><span class="eyebrow" data-i18n="k4">Equipa</span><h2 data-i18n="k63">Consultores que conhecem cada rua</h2></div>
+      <p data-i18n="k64">Profissionais experientes, focados em ouvir as suas necessidades e em proteger os seus interesses.</p>
+    </div>
+    <div class="team-grid">
+      <div class="agent reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=75" alt="Sofia Almeida"></div><h3>Sofia Almeida</h3><span data-i18n="k65">Diretora comercial · Lisboa</span><a href="tel:+351912345671">📞 912 345 671</a></div>
+      <div class="agent reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=75" alt="Miguel Rocha"></div><h3>Miguel Rocha</h3><span data-i18n="k66">Consultor · Cascais e Sintra</span><a href="tel:+351912345672">📞 912 345 672</a></div>
+      <div class="agent reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=700&q=75" alt="Ana Teixeira"></div><h3>Ana Teixeira</h3><span data-i18n="k67">Consultora · Porto</span><a href="tel:+351912345673">📞 912 345 673</a></div>
+      <div class="agent reveal"><div class="ph"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=75" alt="Ricardo Nunes"></div><h3>Ricardo Nunes</h3><span data-i18n="k68">Especialista em crédito habitação</span><a href="tel:+351912345674">📞 912 345 674</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPINIÕES -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="k69">Opiniões</span><h2 data-i18n="k70">Quem confiou em nós</h2>
+    </div>
+    <div class="r-grid">
+      <div class="review reveal"><div class="stars">★★★★★</div><p data-i18n="k71">“Vendemos o nosso apartamento em apenas três semanas e acima do valor que esperávamos. Profissionalismo do início ao fim.”</p><strong>Paulo e Marta G.</strong><small data-i18n="k72">Venderam em Lisboa</small></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><p data-i18n="k73">“Como estrangeiros, tínhamos muitas dúvidas. Explicaram-nos tudo, desde o NIF ao crédito, e encontrámos a casa perfeita.”</p><strong>Emma e James W.</strong><small data-i18n="k74">Compraram em Cascais</small></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><p data-i18n="k75">“Precisava de arrendar rapidamente por mudança de trabalho. Em dez dias tinha casa. Recomendo sem hesitar.”</p><strong>Tiago L.</strong><small data-i18n="k76">Arrendou no Porto</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="k77">Perguntas frequentes</span><h2 data-i18n="k78">Esclarecemos as suas dúvidas</h2>
+    </div>
+    <div class="faq reveal">
+      <details open><summary data-i18n="k79">A avaliação do meu imóvel tem algum custo?</summary><p data-i18n="k80">Não. A avaliação é gratuita e sem compromisso. Analisamos o imóvel, a zona e os valores de mercado atuais para lhe dar um preço realista.</p></details>
+      <details><summary data-i18n="k81">Que impostos pago ao comprar casa em Portugal?</summary><p data-i18n="k82">Na compra pagam-se o IMT e o Imposto do Selo, que variam conforme o valor e o tipo de imóvel. Explicamos-lhe os custos exatos antes de avançar.</p></details>
+      <details><summary data-i18n="k83">Os estrangeiros podem comprar casa em Portugal?</summary><p data-i18n="k84">Sim. Basta ter um NIF português e uma conta bancária. Acompanhamos todo o processo, incluindo o pedido de crédito, se necessário.</p></details>
+      <details><summary data-i18n="k85">Ajudam a conseguir crédito habitação?</summary><p data-i18n="k86">Sim. O nosso especialista compara propostas de vários bancos e acompanha o processo até à escritura, sem custos adicionais para si.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTOS -->
+<section class="contact" id="contactos">
+  <div class="container contact-grid">
+    <div class="c-card reveal">
+      <span class="eyebrow" data-i18n="k5">Contactos</span>
+      <h2 data-i18n="k87">Visite a nossa loja</h2>
+      <div class="c-line"><div class="ic">📍</div><div><strong data-i18n="k88">Morada</strong><span>Avenida da Liberdade, 200<br>1250-000 Lisboa</span></div></div>
+      <div class="c-line"><div class="ic">📞</div><div><strong data-i18n="k89">Telefone</strong><span>21 234 5678 · 912 345 678</span></div></div>
+      <div class="c-line"><div class="ic">✉️</div><div><strong data-i18n="k90">Email</strong><span>geral@casaatlantica.pt</span></div></div>
+      <div class="c-line"><div class="ic">🕘</div><div style="flex:1"><strong data-i18n="k91">Horário</strong>
+        <table class="hours" id="hours">
+          <tr data-d="1"><td data-i18n="k92">Segunda a Sexta</td><td>9h30 – 19h30</td></tr>
+          <tr data-d="6"><td data-i18n="k93">Sábado</td><td>10h00 – 14h00</td></tr>
+          <tr data-d="0"><td data-i18n="k94">Domingo</td><td data-i18n="k95">Só com marcação</td></tr>
+        </table></div></div>
+    </div>
+    <div class="map reveal"><iframe src="https://www.google.com/maps?q=Lisboa&output=embed" loading="lazy" title="Mapa da imobiliária"></iframe></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div><a href="#inicio" class="logo"><span class="mark">CA</span><span><strong>Casa Atlântica</strong><small data-i18n="k0">Imobiliária</small></span></a><p data-i18n="k96">Comprar, vender e arrendar casa em Lisboa, Cascais, Sintra e Porto, com acompanhamento personalizado em todas as etapas.</p></div>
+      <div><h4 data-i18n="k97">Navegação</h4><ul><li><a href="#imoveis" data-i18n="k1">Imóveis</a></li><li><a href="#servicos" data-i18n="k2">Serviços</a></li><li><a href="#avaliar" data-i18n="k3">Vender casa</a></li><li><a href="#contactos" data-i18n="k5">Contactos</a></li></ul></div>
+      <div><h4 data-i18n="k98">Siga-nos</h4><ul><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="#">LinkedIn</a></li></ul></div>
+    </div>
+    <div class="legal"><span>© <span id="y"></span> Casa Atlântica Imobiliária, Lda. · <span data-i18n="k99">Todos os direitos reservados</span></span><span data-i18n="k100">Licença AMI n.º 00000</span></div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/351912345678" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+<script>
+  document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('menu').classList.remove('open')));
+
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  document.querySelectorAll('.ph img').forEach(img=>{
+    const hide=()=>img.style.visibility='hidden';
+    if(img.complete&&img.naturalWidth===0)hide();else img.addEventListener('error',hide);
+  });
+
+  // Pesquisa de imóveis
+  let deal='venda';
+  let searched=false;
+  function applyFilter(){
+    const loc=document.getElementById('s-loc').value;
+    const type=document.getElementById('s-type').value;
+    const beds=+document.getElementById('s-beds').value;
+    let shown=0;
+    document.querySelectorAll('#props .prop').forEach(p=>{
+      const ok=(!searched||p.dataset.deal===deal)&&(loc==='all'||p.dataset.loc===loc)&&(type==='all'||p.dataset.type===type)&&(+p.dataset.beds>=beds);
+      p.classList.toggle('hide',!ok);
+      if(ok){shown++;p.classList.add('in');}
+    });
+    document.getElementById('noResults').classList.toggle('show',shown===0);
+  }
+  document.querySelectorAll('.deal-tab').forEach(t=>t.addEventListener('click',()=>{
+    document.querySelectorAll('.deal-tab').forEach(x=>x.classList.toggle('active',x===t));
+    deal=t.dataset.deal;
+    if(searched)applyFilter();
+  }));
+  document.getElementById('s-btn').addEventListener('click',()=>{
+    searched=true;applyFilter();
+    document.getElementById('imoveis').scrollIntoView({behavior:'smooth'});
+  });
+
+  // Pedir informações sobre um imóvel (mensagem em português, para a imobiliária)
+  document.querySelectorAll('.prop .ask').forEach(b=>b.addEventListener('click',()=>{
+    const ref=b.closest('.prop').dataset.ref;
+    const msg=`Olá! Tenho interesse neste imóvel e gostaria de mais informações:\n${ref}`;
+    window.open('https://wa.me/351912345678?text='+encodeURIComponent(msg),'_blank');
+  }));
+
+  // Avaliação gratuita
+  document.getElementById('valForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const v=id=>document.getElementById(id).value.trim();
+    let msg=`Olá! Gostaria de uma avaliação gratuita do meu imóvel.\nNome: ${v('v-name')}\nLocalização: ${v('v-loc')}\nTipo: ${v('v-type')}\nTipologia: ${v('v-rooms')}`;
+    if(v('v-notes'))msg+=`\nMensagem: ${v('v-notes')}`;
+    window.open('https://wa.me/351912345678?text='+encodeURIComponent(msg),'_blank');
+  });
+
+  const day=new Date().getDay();
+  const row=document.querySelector(`#hours tr[data-d="${day>=1&&day<=5?1:day}"]`);
+  if(row)row.classList.add('today');
+  document.getElementById('y').textContent=new Date().getFullYear();
+
+  // ---------- IDIOMAS ----------
+  const I18N = {"en": {"k0": "Real Estate", "k1": "Properties", "k2": "Services", "k3": "Sell your home", "k4": "Team", "k5": "Contact", "k6": "Free valuation", "k7": "Real estate agency in Lisbon, Cascais, Sintra and Porto", "k8": "Find the home where your <em>life happens.</em>", "k9": "Hand-picked apartments and houses, with personal support from the first contact to the handover of the keys.", "k10": "Buy", "k11": "Rent", "k12": "Location", "k13": "All areas", "k14": "Property type", "k15": "All", "k16": "Apartment", "k17": "House", "k18": "Bedrooms", "k19": "Any", "k20": "🔍 Search", "k21": "properties sold", "k22": "years of experience", "k23": "satisfied clients", "k24": "offices in Portugal", "k25": "Featured properties", "k26": "Hand-picked homes", "k27": "A selection of the most sought-after properties right now. Use the search above to filter by area, type and number of bedrooms.", "k28": "For sale", "k29": "New", "k30": "2-bedroom apartment with river view", "k31": "Request information", "k32": "Exclusive", "k33": "4-bedroom house with pool", "k34": "For rent", "k35": "/month", "k36": "Renovated 1-bedroom apartment", "k37": "3-bedroom apartment by the sea", "k38": "Reserved", "k39": "3-bedroom house with garden", "k40": "Furnished 3-bedroom house", "k41": "3-bedroom penthouse with terrace", "k42": "2-bedroom apartment in the centre", "k43": "We couldn't find any properties matching these criteria. Get in touch: we have more properties that aren't listed yet.", "k44": "We take care of everything", "k45": "A complete team to make buying, selling or renting simple, safe and stress-free.", "k46": "Sell", "k47": "Free valuation, professional photography, virtual tours and listing on the main property portals.", "k48": "We find the right property for you and accompany you through every viewing and negotiation.", "k49": "Tenant screening, contracts and rental management with complete peace of mind.", "k50": "Mortgages", "k51": "We compare offers from several banks to get you the best financing terms.", "k52": "Thinking of selling?", "k53": "How much is your home worth?", "k54": "Request a free, no-obligation valuation. A consultant from your area will contact you within 24 hours.", "k55": "Name", "k56": "Property location", "k57": "Land", "k58": "Shop or office", "k59": "Layout (T0–T5)", "k60": "Message (optional)", "k61": "💬 Request valuation via WhatsApp", "k62": "Your details are only used to reply to your request.", "k63": "Consultants who know every street", "k64": "Experienced professionals focused on listening to your needs and protecting your interests.", "k65": "Sales director · Lisbon", "k66": "Consultant · Cascais and Sintra", "k67": "Consultant · Porto", "k68": "Mortgage specialist", "k69": "Reviews", "k70": "Those who trusted us", "k71": "“We sold our apartment in just three weeks and above the price we expected. Professional from start to finish.”", "k72": "Sold in Lisbon", "k73": "“As foreigners we had lots of questions. They explained everything, from the NIF tax number to the mortgage, and we found the perfect home.”", "k74": "Bought in Cascais", "k75": "“I needed to rent quickly after a job move. Within ten days I had a home. I recommend them without hesitation.”", "k76": "Rented in Porto", "k77": "Frequently asked questions", "k78": "We answer your questions", "k79": "Is there a cost for valuing my property?", "k80": "No. The valuation is free and with no obligation. We analyse the property, the area and current market values to give you a realistic price.", "k81": "What taxes do I pay when buying a home in Portugal?", "k82": "When buying, you pay IMT (property transfer tax) and Stamp Duty, which vary depending on the price and type of property. We explain the exact costs before you go ahead.", "k83": "Can foreigners buy property in Portugal?", "k84": "Yes. You just need a Portuguese tax number (NIF) and a bank account. We guide you through the whole process, including the mortgage application if needed.", "k85": "Do you help with getting a mortgage?", "k86": "Yes. Our specialist compares offers from several banks and follows the process through to the deed signing, at no extra cost to you.", "k87": "Visit our office", "k88": "Address", "k89": "Phone", "k90": "Email", "k91": "Opening hours", "k92": "Monday to Friday", "k93": "Saturday", "k94": "Sunday", "k95": "By appointment only", "k96": "Buy, sell and rent homes in Lisbon, Cascais, Sintra and Porto, with personal support at every step.", "k97": "Navigation", "k98": "Follow us", "k99": "All rights reserved", "k100": "AMI licence no. 00000"}, "es": {"k0": "Inmobiliaria", "k1": "Inmuebles", "k2": "Servicios", "k3": "Vender casa", "k4": "Equipo", "k5": "Contacto", "k6": "Valoración gratuita", "k7": "Inmobiliaria en Lisboa, Cascais, Sintra y Oporto", "k8": "Encuentre la casa donde <em>sucede su vida.</em>", "k9": "Pisos y casas seleccionados, con acompañamiento personalizado desde el primer contacto hasta la entrega de llaves.", "k10": "Comprar", "k11": "Alquilar", "k12": "Ubicación", "k13": "Todas las zonas", "k14": "Tipo de inmueble", "k15": "Todos", "k16": "Piso", "k17": "Casa", "k18": "Habitaciones", "k19": "Cualquiera", "k20": "🔍 Buscar", "k21": "inmuebles vendidos", "k22": "años de experiencia", "k23": "clientes satisfechos", "k24": "oficinas en Portugal", "k25": "Inmuebles destacados", "k26": "Casas elegidas con cuidado", "k27": "Una selección de los inmuebles más buscados del momento. Use el buscador para filtrar por zona, tipo y número de habitaciones.", "k28": "Venta", "k29": "Nuevo", "k30": "Piso de 2 habitaciones con vistas al río", "k31": "Pedir información", "k32": "Exclusivo", "k33": "Casa de 4 habitaciones con piscina", "k34": "Alquiler", "k35": "/mes", "k36": "Piso reformado de 1 habitación", "k37": "Piso de 3 habitaciones junto al mar", "k38": "Reservado", "k39": "Casa de 3 habitaciones con jardín", "k40": "Casa amueblada de 3 habitaciones", "k41": "Ático de 3 habitaciones con terraza", "k42": "Piso de 2 habitaciones en el centro", "k43": "No hemos encontrado inmuebles con estos criterios. Hable con nosotros: tenemos más inmuebles que aún no están publicados.", "k44": "Nos ocupamos de todo", "k45": "Un equipo completo para que comprar, vender o alquilar sea sencillo, seguro y sin estrés.", "k46": "Vender", "k47": "Valoración gratuita, fotografía profesional, visitas virtuales y difusión en los principales portales.", "k48": "Encontramos el inmueble adecuado y le acompañamos en todas las visitas y negociaciones.", "k49": "Selección de inquilinos, contratos y gestión del alquiler con total tranquilidad.", "k50": "Hipotecas", "k51": "Comparamos ofertas de varios bancos para conseguir las mejores condiciones de financiación.", "k52": "¿Quiere vender?", "k53": "¿Cuánto vale su casa?", "k54": "Pida una valoración gratuita y sin compromiso. Un asesor de su zona se pondrá en contacto en menos de 24 horas.", "k55": "Nombre", "k56": "Ubicación del inmueble", "k57": "Terreno", "k58": "Local u oficina", "k59": "Tipología (T0–T5)", "k60": "Mensaje (opcional)", "k61": "💬 Pedir valoración por WhatsApp", "k62": "Sus datos solo se utilizan para responder a su solicitud.", "k63": "Asesores que conocen cada calle", "k64": "Profesionales con experiencia, centrados en escuchar sus necesidades y proteger sus intereses.", "k65": "Directora comercial · Lisboa", "k66": "Asesor · Cascais y Sintra", "k67": "Asesora · Oporto", "k68": "Especialista en hipotecas", "k69": "Opiniones", "k70": "Quienes confiaron en nosotros", "k71": "“Vendimos nuestro piso en solo tres semanas y por encima del precio que esperábamos. Profesionalidad de principio a fin.”", "k72": "Vendieron en Lisboa", "k73": "“Como extranjeros teníamos muchas dudas. Nos lo explicaron todo, desde el NIF hasta la hipoteca, y encontramos la casa perfecta.”", "k74": "Compraron en Cascais", "k75": "“Necesitaba alquilar rápido por un cambio de trabajo. En diez días tenía casa. Lo recomiendo sin dudarlo.”", "k76": "Alquiló en Oporto", "k77": "Preguntas frecuentes", "k78": "Resolvemos sus dudas", "k79": "¿La valoración de mi inmueble tiene algún coste?", "k80": "No. La valoración es gratuita y sin compromiso. Analizamos el inmueble, la zona y los valores de mercado actuales para darle un precio realista.", "k81": "¿Qué impuestos pago al comprar casa en Portugal?", "k82": "En la compra se pagan el IMT y el Impuesto de Sello, que varían según el valor y el tipo de inmueble. Le explicamos los costes exactos antes de avanzar.", "k83": "¿Pueden los extranjeros comprar casa en Portugal?", "k84": "Sí. Basta con tener un NIF portugués y una cuenta bancaria. Le acompañamos en todo el proceso, incluida la solicitud de hipoteca si es necesaria.", "k85": "¿Ayudan a conseguir una hipoteca?", "k86": "Sí. Nuestro especialista compara ofertas de varios bancos y acompaña el proceso hasta la escritura, sin costes adicionales para usted.", "k87": "Visite nuestra oficina", "k88": "Dirección", "k89": "Teléfono", "k90": "Email", "k91": "Horario", "k92": "Lunes a viernes", "k93": "Sábado", "k94": "Domingo", "k95": "Solo con cita previa", "k96": "Comprar, vender y alquilar casa en Lisboa, Cascais, Sintra y Oporto, con acompañamiento personalizado en todas las etapas.", "k97": "Navegación", "k98": "Síganos", "k99": "Todos los derechos reservados", "k100": "Licencia AMI n.º 00000"}, "fr": {"k0": "Agence immobilière", "k1": "Biens", "k2": "Services", "k3": "Vendre son bien", "k4": "Équipe", "k5": "Contact", "k6": "Estimation gratuite", "k7": "Agence immobilière à Lisbonne, Cascais, Sintra et Porto", "k8": "Trouvez la maison où <em>votre vie s'écrit.</em>", "k9": "Appartements et maisons sélectionnés, avec un accompagnement personnalisé du premier contact jusqu'à la remise des clés.", "k10": "Acheter", "k11": "Louer", "k12": "Localisation", "k13": "Toutes les zones", "k14": "Type de bien", "k15": "Tous", "k16": "Appartement", "k17": "Maison", "k18": "Chambres", "k19": "Indifférent", "k20": "🔍 Rechercher", "k21": "biens vendus", "k22": "ans d'expérience", "k23": "clients satisfaits", "k24": "agences au Portugal", "k25": "Biens à la une", "k26": "Des maisons choisies avec soin", "k27": "Une sélection des biens les plus recherchés du moment. Utilisez la recherche ci-dessus pour filtrer par zone, type et nombre de chambres.", "k28": "Vente", "k29": "Nouveau", "k30": "Appartement 2 chambres vue sur le fleuve", "k31": "Demander des informations", "k32": "Exclusivité", "k33": "Maison 4 chambres avec piscine", "k34": "Location", "k35": "/mois", "k36": "Appartement 1 chambre rénové", "k37": "Appartement 3 chambres près de la mer", "k38": "Réservé", "k39": "Maison 3 chambres avec jardin", "k40": "Maison meublée 3 chambres", "k41": "Penthouse 3 chambres avec terrasse", "k42": "Appartement 2 chambres en centre-ville", "k43": "Aucun bien ne correspond à ces critères. Contactez-nous : nous avons d'autres biens qui ne sont pas encore publiés.", "k44": "Nous nous occupons de tout", "k45": "Une équipe complète pour qu'acheter, vendre ou louer soit simple, sûr et sans stress.", "k46": "Vendre", "k47": "Estimation gratuite, photos professionnelles, visites virtuelles et diffusion sur les principaux portails.", "k48": "Nous trouvons le bien qu'il vous faut et vous accompagnons dans toutes les visites et négociations.", "k49": "Sélection des locataires, contrats et gestion locative en toute tranquillité.", "k50": "Crédit immobilier", "k51": "Nous comparons les offres de plusieurs banques pour obtenir les meilleures conditions de financement.", "k52": "Vous souhaitez vendre ?", "k53": "Combien vaut votre maison ?", "k54": "Demandez une estimation gratuite et sans engagement. Un conseiller de votre secteur vous contacte en moins de 24 heures.", "k55": "Nom", "k56": "Localisation du bien", "k57": "Terrain", "k58": "Commerce ou bureau", "k59": "Typologie (T0–T5)", "k60": "Message (facultatif)", "k61": "💬 Demander une estimation sur WhatsApp", "k62": "Vos données sont utilisées uniquement pour répondre à votre demande.", "k63": "Des conseillers qui connaissent chaque rue", "k64": "Des professionnels expérimentés, à l'écoute de vos besoins et attentifs à vos intérêts.", "k65": "Directrice commerciale · Lisbonne", "k66": "Conseiller · Cascais et Sintra", "k67": "Conseillère · Porto", "k68": "Spécialiste du crédit immobilier", "k69": "Avis", "k70": "Ils nous ont fait confiance", "k71": "« Nous avons vendu notre appartement en seulement trois semaines, au-dessus du prix espéré. Un professionnalisme du début à la fin. »", "k72": "Ont vendu à Lisbonne", "k73": "« En tant qu'étrangers, nous avions beaucoup de questions. Ils nous ont tout expliqué, du NIF au crédit, et nous avons trouvé la maison idéale. »", "k74": "Ont acheté à Cascais", "k75": "« Je devais louer rapidement après une mutation. En dix jours, j'avais un logement. Je recommande sans hésiter. »", "k76": "A loué à Porto", "k77": "Questions fréquentes", "k78": "Nous répondons à vos questions", "k79": "L'estimation de mon bien est-elle payante ?", "k80": "Non. L'estimation est gratuite et sans engagement. Nous analysons le bien, le quartier et les prix actuels du marché pour vous donner un prix réaliste.", "k81": "Quels impôts paie-t-on en achetant au Portugal ?", "k82": "À l'achat, on paie l'IMT et le droit de timbre, qui varient selon la valeur et le type de bien. Nous vous expliquons les coûts exacts avant de vous engager.", "k83": "Les étrangers peuvent-ils acheter au Portugal ?", "k84": "Oui. Il suffit d'avoir un NIF portugais et un compte bancaire. Nous vous accompagnons tout au long du processus, y compris la demande de crédit si nécessaire.", "k85": "Aidez-vous à obtenir un crédit immobilier ?", "k86": "Oui. Notre spécialiste compare les offres de plusieurs banques et suit le dossier jusqu'à l'acte notarié, sans frais supplémentaires pour vous.", "k87": "Visitez notre agence", "k88": "Adresse", "k89": "Téléphone", "k90": "E-mail", "k91": "Horaires", "k92": "Du lundi au vendredi", "k93": "Samedi", "k94": "Dimanche", "k95": "Sur rendez-vous uniquement", "k96": "Acheter, vendre et louer à Lisbonne, Cascais, Sintra et Porto, avec un accompagnement personnalisé à chaque étape.", "k97": "Navigation", "k98": "Suivez-nous", "k99": "Tous droits réservés", "k100": "Licence AMI n° 00000"}, "it": {"k0": "Agenzia immobiliare", "k1": "Immobili", "k2": "Servizi", "k3": "Vendi casa", "k4": "Team", "k5": "Contatti", "k6": "Valutazione gratuita", "k7": "Agenzia immobiliare a Lisbona, Cascais, Sintra e Porto", "k8": "Trova la casa dove <em>vive la tua vita.</em>", "k9": "Appartamenti e ville selezionati, con un'assistenza personalizzata dal primo contatto alla consegna delle chiavi.", "k10": "Comprare", "k11": "Affittare", "k12": "Zona", "k13": "Tutte le zone", "k14": "Tipo di immobile", "k15": "Tutti", "k16": "Appartamento", "k17": "Villa", "k18": "Camere", "k19": "Qualsiasi", "k20": "🔍 Cerca", "k21": "immobili venduti", "k22": "anni di esperienza", "k23": "clienti soddisfatti", "k24": "agenzie in Portogallo", "k25": "Immobili in evidenza", "k26": "Case scelte con cura", "k27": "Una selezione degli immobili più richiesti del momento. Usa la ricerca qui sopra per filtrare per zona, tipo e numero di camere.", "k28": "Vendita", "k29": "Nuovo", "k30": "Appartamento con 2 camere e vista fiume", "k31": "Richiedi informazioni", "k32": "Esclusiva", "k33": "Villa con 4 camere e piscina", "k34": "Affitto", "k35": "/mese", "k36": "Appartamento ristrutturato con 1 camera", "k37": "Appartamento con 3 camere vicino al mare", "k38": "Riservato", "k39": "Villa con 3 camere e giardino", "k40": "Villa arredata con 3 camere", "k41": "Attico con 3 camere e terrazza", "k42": "Appartamento con 2 camere in centro", "k43": "Non abbiamo trovato immobili con questi criteri. Contattaci: abbiamo altri immobili non ancora pubblicati.", "k44": "Ci occupiamo di tutto", "k45": "Un team completo per rendere l'acquisto, la vendita o l'affitto semplici, sicuri e senza stress.", "k46": "Vendere", "k47": "Valutazione gratuita, foto professionali, tour virtuali e pubblicazione sui principali portali.", "k48": "Troviamo l'immobile giusto per te e ti accompagniamo in tutte le visite e trattative.", "k49": "Selezione degli inquilini, contratti e gestione dell'affitto in totale tranquillità.", "k50": "Mutui", "k51": "Confrontiamo le offerte di diverse banche per ottenere le migliori condizioni di finanziamento.", "k52": "Vuoi vendere?", "k53": "Quanto vale la tua casa?", "k54": "Richiedi una valutazione gratuita e senza impegno. Un consulente della tua zona ti contatterà entro 24 ore.", "k55": "Nome", "k56": "Ubicazione dell'immobile", "k57": "Terreno", "k58": "Negozio o ufficio", "k59": "Tipologia (T0–T5)", "k60": "Messaggio (facoltativo)", "k61": "💬 Richiedi la valutazione su WhatsApp", "k62": "I tuoi dati sono usati solo per rispondere alla tua richiesta.", "k63": "Consulenti che conoscono ogni strada", "k64": "Professionisti esperti, attenti alle tue esigenze e alla tutela dei tuoi interessi.", "k65": "Direttrice commerciale · Lisbona", "k66": "Consulente · Cascais e Sintra", "k67": "Consulente · Porto", "k68": "Specialista in mutui", "k69": "Recensioni", "k70": "Chi si è fidato di noi", "k71": "“Abbiamo venduto il nostro appartamento in sole tre settimane e a un prezzo superiore alle aspettative. Professionalità dall'inizio alla fine.”", "k72": "Hanno venduto a Lisbona", "k73": "“Da stranieri avevamo molti dubbi. Ci hanno spiegato tutto, dal NIF al mutuo, e abbiamo trovato la casa perfetta.”", "k74": "Hanno comprato a Cascais", "k75": "“Dovevo affittare in fretta per un trasferimento di lavoro. In dieci giorni avevo casa. Li consiglio senza esitazione.”", "k76": "Ha affittato a Porto", "k77": "Domande frequenti", "k78": "Rispondiamo ai tuoi dubbi", "k79": "La valutazione del mio immobile ha un costo?", "k80": "No. La valutazione è gratuita e senza impegno. Analizziamo l'immobile, la zona e i valori di mercato attuali per darti un prezzo realistico.", "k81": "Quali tasse si pagano comprando casa in Portogallo?", "k82": "All'acquisto si pagano l'IMT e l'imposta di bollo, che variano in base al valore e al tipo di immobile. Ti spieghiamo i costi esatti prima di procedere.", "k83": "Gli stranieri possono comprare casa in Portogallo?", "k84": "Sì. Basta avere un codice fiscale portoghese (NIF) e un conto bancario. Ti seguiamo in tutto il processo, inclusa la richiesta di mutuo se necessaria.", "k85": "Aiutate a ottenere un mutuo?", "k86": "Sì. Il nostro specialista confronta le offerte di diverse banche e segue la pratica fino al rogito, senza costi aggiuntivi per te.", "k87": "Visita la nostra agenzia", "k88": "Indirizzo", "k89": "Telefono", "k90": "Email", "k91": "Orari", "k92": "Dal lunedì al venerdì", "k93": "Sabato", "k94": "Domenica", "k95": "Solo su appuntamento", "k96": "Comprare, vendere e affittare casa a Lisbona, Cascais, Sintra e Porto, con un'assistenza personalizzata in ogni fase.", "k97": "Navigazione", "k98": "Seguici", "k99": "Tutti i diritti riservati", "k100": "Licenza AMI n. 00000"}, "de": {"k0": "Immobilien", "k1": "Immobilien", "k2": "Leistungen", "k3": "Immobilie verkaufen", "k4": "Team", "k5": "Kontakt", "k6": "Kostenlose Bewertung", "k7": "Immobilienmakler in Lissabon, Cascais, Sintra und Porto", "k8": "Finden Sie das Zuhause, in dem <em>Ihr Leben spielt.</em>", "k9": "Ausgewählte Wohnungen und Häuser, mit persönlicher Begleitung vom ersten Kontakt bis zur Schlüsselübergabe.", "k10": "Kaufen", "k11": "Mieten", "k12": "Lage", "k13": "Alle Gegenden", "k14": "Immobilientyp", "k15": "Alle", "k16": "Wohnung", "k17": "Haus", "k18": "Schlafzimmer", "k19": "Beliebig", "k20": "🔍 Suchen", "k21": "verkaufte Immobilien", "k22": "Jahre Erfahrung", "k23": "zufriedene Kunden", "k24": "Büros in Portugal", "k25": "Ausgewählte Immobilien", "k26": "Handverlesene Häuser", "k27": "Eine Auswahl der derzeit gefragtesten Immobilien. Nutzen Sie die Suche oben, um nach Lage, Typ und Anzahl der Schlafzimmer zu filtern.", "k28": "Kauf", "k29": "Neu", "k30": "2-Zimmer-Wohnung mit Flussblick", "k31": "Informationen anfordern", "k32": "Exklusiv", "k33": "Haus mit 4 Schlafzimmern und Pool", "k34": "Miete", "k35": "/Monat", "k36": "Renovierte Wohnung mit 1 Schlafzimmer", "k37": "Wohnung mit 3 Schlafzimmern am Meer", "k38": "Reserviert", "k39": "Haus mit 3 Schlafzimmern und Garten", "k40": "Möbliertes Haus mit 3 Schlafzimmern", "k41": "Penthouse mit 3 Schlafzimmern und Terrasse", "k42": "Wohnung mit 2 Schlafzimmern im Zentrum", "k43": "Wir haben keine Immobilien mit diesen Kriterien gefunden. Sprechen Sie uns an: Wir haben weitere, noch nicht veröffentlichte Angebote.", "k44": "Wir kümmern uns um alles", "k45": "Ein komplettes Team, damit Kaufen, Verkaufen oder Mieten einfach, sicher und stressfrei ist.", "k46": "Verkaufen", "k47": "Kostenlose Bewertung, professionelle Fotos, virtuelle Rundgänge und Veröffentlichung auf den wichtigsten Portalen.", "k48": "Wir finden die passende Immobilie für Sie und begleiten Sie bei allen Besichtigungen und Verhandlungen.", "k49": "Mieterauswahl, Verträge und Mietverwaltung – ganz entspannt.", "k50": "Baufinanzierung", "k51": "Wir vergleichen Angebote mehrerer Banken, um die besten Finanzierungskonditionen zu erzielen.", "k52": "Möchten Sie verkaufen?", "k53": "Was ist Ihr Zuhause wert?", "k54": "Fordern Sie eine kostenlose und unverbindliche Bewertung an. Ein Berater aus Ihrer Region meldet sich innerhalb von 24 Stunden.", "k55": "Name", "k56": "Lage der Immobilie", "k57": "Grundstück", "k58": "Laden oder Büro", "k59": "Typologie (T0–T5)", "k60": "Nachricht (optional)", "k61": "💬 Bewertung per WhatsApp anfordern", "k62": "Ihre Daten werden nur zur Beantwortung Ihrer Anfrage verwendet.", "k63": "Berater, die jede Straße kennen", "k64": "Erfahrene Fachleute, die Ihnen zuhören und Ihre Interessen schützen.", "k65": "Vertriebsleiterin · Lissabon", "k66": "Berater · Cascais und Sintra", "k67": "Beraterin · Porto", "k68": "Spezialist für Baufinanzierung", "k69": "Bewertungen", "k70": "Sie haben uns vertraut", "k71": "„Wir haben unsere Wohnung in nur drei Wochen verkauft – und über dem erwarteten Preis. Professionell von Anfang bis Ende.“", "k72": "Verkauft in Lissabon", "k73": "„Als Ausländer hatten wir viele Fragen. Man hat uns alles erklärt, von der Steuernummer NIF bis zum Kredit, und wir haben das perfekte Haus gefunden.“", "k74": "Gekauft in Cascais", "k75": "„Ich musste wegen eines Jobwechsels schnell eine Wohnung mieten. Nach zehn Tagen hatte ich ein Zuhause. Klare Empfehlung.“", "k76": "Gemietet in Porto", "k77": "Häufige Fragen", "k78": "Wir beantworten Ihre Fragen", "k79": "Kostet die Bewertung meiner Immobilie etwas?", "k80": "Nein. Die Bewertung ist kostenlos und unverbindlich. Wir analysieren die Immobilie, die Lage und die aktuellen Marktwerte, um Ihnen einen realistischen Preis zu nennen.", "k81": "Welche Steuern zahle ich beim Hauskauf in Portugal?", "k82": "Beim Kauf fallen die Grunderwerbsteuer IMT und die Stempelsteuer an, die je nach Wert und Art der Immobilie variieren. Wir erklären Ihnen die genauen Kosten vorab.", "k83": "Dürfen Ausländer in Portugal Immobilien kaufen?", "k84": "Ja. Sie benötigen nur eine portugiesische Steuernummer (NIF) und ein Bankkonto. Wir begleiten Sie durch den gesamten Prozess, auf Wunsch auch beim Kreditantrag.", "k85": "Helfen Sie bei der Baufinanzierung?", "k86": "Ja. Unser Spezialist vergleicht Angebote mehrerer Banken und begleitet den Prozess bis zum Notartermin – ohne Zusatzkosten für Sie.", "k87": "Besuchen Sie unser Büro", "k88": "Adresse", "k89": "Telefon", "k90": "E-Mail", "k91": "Öffnungszeiten", "k92": "Montag bis Freitag", "k93": "Samstag", "k94": "Sonntag", "k95": "Nur nach Vereinbarung", "k96": "Kaufen, verkaufen und mieten in Lissabon, Cascais, Sintra und Porto – mit persönlicher Begleitung in jeder Phase.", "k97": "Navigation", "k98": "Folgen Sie uns", "k99": "Alle Rechte vorbehalten", "k100": "AMI-Lizenz Nr. 00000"}, "uk": {"k0": "Нерухомість", "k1": "Об'єкти", "k2": "Послуги", "k3": "Продати житло", "k4": "Команда", "k5": "Контакти", "k6": "Безкоштовна оцінка", "k7": "Агентство нерухомості в Лісабоні, Кашкайші, Сінтрі та Порту", "k8": "Знайдіть дім, де <em>відбувається ваше життя.</em>", "k9": "Ретельно відібрані квартири та будинки з персональним супроводом від першого контакту до передачі ключів.", "k10": "Купити", "k11": "Орендувати", "k12": "Розташування", "k13": "Усі райони", "k14": "Тип нерухомості", "k15": "Усі", "k16": "Квартира", "k17": "Будинок", "k18": "Спальні", "k19": "Будь-яка кількість", "k20": "🔍 Шукати", "k21": "проданих об'єктів", "k22": "років досвіду", "k23": "задоволених клієнтів", "k24": "офіси в Португалії", "k25": "Рекомендовані об'єкти", "k26": "Ретельно відібрані оселі", "k27": "Добірка найзатребуваніших об'єктів на цей момент. Скористайтеся пошуком вище, щоб відфільтрувати за районом, типом і кількістю спалень.", "k28": "Продаж", "k29": "Новинка", "k30": "Квартира з 2 спальнями та видом на річку", "k31": "Запитати інформацію", "k32": "Ексклюзив", "k33": "Будинок з 4 спальнями та басейном", "k34": "Оренда", "k35": "/міс.", "k36": "Відремонтована квартира з 1 спальнею", "k37": "Квартира з 3 спальнями біля моря", "k38": "Зарезервовано", "k39": "Будинок з 3 спальнями та садом", "k40": "Мебльований будинок з 3 спальнями", "k41": "Пентхаус з 3 спальнями та терасою", "k42": "Квартира з 2 спальнями в центрі", "k43": "Ми не знайшли об'єктів за цими критеріями. Зв'яжіться з нами: у нас є ще не опубліковані пропозиції.", "k44": "Ми подбаємо про все", "k45": "Повна команда, щоб купівля, продаж чи оренда були простими, безпечними та без стресу.", "k46": "Продати", "k47": "Безкоштовна оцінка, професійні фото, віртуальні тури та розміщення на провідних порталах.", "k48": "Ми знайдемо для вас правильний об'єкт і супроводжуватимемо на всіх переглядах і переговорах.", "k49": "Підбір орендарів, договори та управління орендою — без жодного клопоту.", "k50": "Іпотека", "k51": "Порівнюємо пропозиції кількох банків, щоб отримати найкращі умови фінансування.", "k52": "Плануєте продати?", "k53": "Скільки коштує ваше житло?", "k54": "Замовте безкоштовну оцінку без зобов'язань. Консультант із вашого району зв'яжеться з вами протягом 24 годин.", "k55": "Ім'я", "k56": "Розташування об'єкта", "k57": "Ділянка", "k58": "Магазин або офіс", "k59": "Планування (T0–T5)", "k60": "Повідомлення (необов'язково)", "k61": "💬 Замовити оцінку у WhatsApp", "k62": "Ваші дані використовуються лише для відповіді на ваш запит.", "k63": "Консультанти, які знають кожну вулицю", "k64": "Досвідчені фахівці, які уважно вислухають і захистять ваші інтереси.", "k65": "Комерційна директорка · Лісабон", "k66": "Консультант · Кашкайш і Сінтра", "k67": "Консультантка · Порту", "k68": "Фахівець з іпотеки", "k69": "Відгуки", "k70": "Ті, хто нам довірився", "k71": "«Ми продали квартиру всього за три тижні й дорожче, ніж очікували. Професіоналізм від початку до кінця.»", "k72": "Продали в Лісабоні", "k73": "«Як іноземці ми мали багато запитань. Нам усе пояснили — від податкового номера NIF до кредиту, — і ми знайшли ідеальний дім.»", "k74": "Купили в Кашкайші", "k75": "«Мені потрібно було швидко орендувати житло через переїзд на нову роботу. За десять днів я мав дім. Рекомендую без вагань.»", "k76": "Орендував у Порту", "k77": "Поширені запитання", "k78": "Відповідаємо на ваші запитання", "k79": "Чи платна оцінка мого об'єкта?", "k80": "Ні. Оцінка безкоштовна і без зобов'язань. Ми аналізуємо об'єкт, район і поточні ринкові ціни, щоб назвати реалістичну вартість.", "k81": "Які податки я сплачую, купуючи житло в Португалії?", "k82": "При купівлі сплачуються IMT і гербовий збір, розмір яких залежить від вартості та типу об'єкта. Ми пояснимо точні витрати заздалегідь.", "k83": "Чи можуть іноземці купувати житло в Португалії?", "k84": "Так. Потрібні лише португальський податковий номер (NIF) і банківський рахунок. Ми супроводжуємо весь процес, зокрема оформлення кредиту за потреби.", "k85": "Чи допомагаєте ви отримати іпотеку?", "k86": "Так. Наш фахівець порівнює пропозиції кількох банків і супроводжує процес до підписання договору, без додаткових витрат для вас.", "k87": "Завітайте до нашого офісу", "k88": "Адреса", "k89": "Телефон", "k90": "Email", "k91": "Години роботи", "k92": "Понеділок – п'ятниця", "k93": "Субота", "k94": "Неділя", "k95": "Лише за попереднім записом", "k96": "Купівля, продаж і оренда житла в Лісабоні, Кашкайші, Сінтрі та Порту з персональним супроводом на кожному етапі.", "k97": "Навігація", "k98": "Ми в соцмережах", "k99": "Усі права захищено", "k100": "Ліцензія AMI № 00000"}, "ru": {"k0": "Недвижимость", "k1": "Объекты", "k2": "Услуги", "k3": "Продать жильё", "k4": "Команда", "k5": "Контакты", "k6": "Бесплатная оценка", "k7": "Агентство недвижимости в Лиссабоне, Кашкайше, Синтре и Порту", "k8": "Найдите дом, где <em>происходит ваша жизнь.</em>", "k9": "Тщательно отобранные квартиры и дома с персональным сопровождением от первого контакта до передачи ключей.", "k10": "Купить", "k11": "Арендовать", "k12": "Расположение", "k13": "Все районы", "k14": "Тип недвижимости", "k15": "Все", "k16": "Квартира", "k17": "Дом", "k18": "Спальни", "k19": "Любое количество", "k20": "🔍 Искать", "k21": "проданных объектов", "k22": "лет опыта", "k23": "довольных клиентов", "k24": "офиса в Португалии", "k25": "Избранные объекты", "k26": "Тщательно отобранные дома", "k27": "Подборка самых востребованных объектов на данный момент. Воспользуйтесь поиском выше, чтобы отфильтровать по району, типу и количеству спален.", "k28": "Продажа", "k29": "Новинка", "k30": "Квартира с 2 спальнями и видом на реку", "k31": "Запросить информацию", "k32": "Эксклюзив", "k33": "Дом с 4 спальнями и бассейном", "k34": "Аренда", "k35": "/мес.", "k36": "Отремонтированная квартира с 1 спальней", "k37": "Квартира с 3 спальнями у моря", "k38": "Забронировано", "k39": "Дом с 3 спальнями и садом", "k40": "Меблированный дом с 3 спальнями", "k41": "Пентхаус с 3 спальнями и террасой", "k42": "Квартира с 2 спальнями в центре", "k43": "Мы не нашли объектов по этим критериям. Свяжитесь с нами: у нас есть ещё неопубликованные предложения.", "k44": "Мы позаботимся обо всём", "k45": "Полная команда, чтобы покупка, продажа или аренда были простыми, безопасными и без стресса.", "k46": "Продать", "k47": "Бесплатная оценка, профессиональные фото, виртуальные туры и размещение на ведущих порталах.", "k48": "Мы найдём для вас подходящий объект и будем сопровождать на всех просмотрах и переговорах.", "k49": "Подбор арендаторов, договоры и управление арендой — без лишних хлопот.", "k50": "Ипотека", "k51": "Сравниваем предложения нескольких банков, чтобы получить лучшие условия финансирования.", "k52": "Планируете продать?", "k53": "Сколько стоит ваш дом?", "k54": "Закажите бесплатную оценку без обязательств. Консультант из вашего района свяжется с вами в течение 24 часов.", "k55": "Имя", "k56": "Расположение объекта", "k57": "Участок", "k58": "Магазин или офис", "k59": "Планировка (T0–T5)", "k60": "Сообщение (необязательно)", "k61": "💬 Заказать оценку в WhatsApp", "k62": "Ваши данные используются только для ответа на ваш запрос.", "k63": "Консультанты, которые знают каждую улицу", "k64": "Опытные специалисты, которые внимательно выслушают и защитят ваши интересы.", "k65": "Коммерческий директор · Лиссабон", "k66": "Консультант · Кашкайш и Синтра", "k67": "Консультант · Порту", "k68": "Специалист по ипотеке", "k69": "Отзывы", "k70": "Те, кто нам доверился", "k71": "«Мы продали квартиру всего за три недели и дороже, чем ожидали. Профессионализм от начала до конца.»", "k72": "Продали в Лиссабоне", "k73": "«Как иностранцы, мы задавали много вопросов. Нам всё объяснили — от налогового номера NIF до кредита, — и мы нашли идеальный дом.»", "k74": "Купили в Кашкайше", "k75": "«Мне нужно было срочно арендовать жильё из-за перехода на новую работу. Через десять дней у меня был дом. Рекомендую без колебаний.»", "k76": "Арендовал в Порту", "k77": "Частые вопросы", "k78": "Отвечаем на ваши вопросы", "k79": "Платная ли оценка моего объекта?", "k80": "Нет. Оценка бесплатная и без обязательств. Мы анализируем объект, район и текущие рыночные цены, чтобы назвать реалистичную стоимость.", "k81": "Какие налоги я плачу при покупке жилья в Португалии?", "k82": "При покупке уплачиваются IMT и гербовый сбор, размер которых зависит от стоимости и типа объекта. Мы заранее объясним точные расходы.", "k83": "Могут ли иностранцы покупать жильё в Португалии?", "k84": "Да. Нужны лишь португальский налоговый номер (NIF) и банковский счёт. Мы сопровождаем весь процесс, включая оформление кредита при необходимости.", "k85": "Помогаете ли вы получить ипотеку?", "k86": "Да. Наш специалист сравнивает предложения нескольких банков и сопровождает процесс до подписания договора, без дополнительных затрат для вас.", "k87": "Посетите наш офис", "k88": "Адрес", "k89": "Телефон", "k90": "Email", "k91": "Часы работы", "k92": "Понедельник – пятница", "k93": "Суббота", "k94": "Воскресенье", "k95": "Только по предварительной записи", "k96": "Покупка, продажа и аренда жилья в Лиссабоне, Кашкайше, Синтре и Порту с персональным сопровождением на каждом этапе.", "k97": "Навигация", "k98": "Мы в соцсетях", "k99": "Все права защищены", "k100": "Лицензия AMI № 00000"}, "ja": {"k0": "不動産", "k1": "物件", "k2": "サービス", "k3": "売却のご相談", "k4": "スタッフ", "k5": "お問い合わせ", "k6": "無料査定", "k7": "リスボン、カスカイス、シントラ、ポルトの不動産会社", "k8": "あなたの<em>暮らしが始まる家</em>を見つけよう。", "k9": "厳選したマンションと一戸建て。最初のご相談から鍵のお渡しまで、専任スタッフがサポートします。", "k10": "購入", "k11": "賃貸", "k12": "エリア", "k13": "すべてのエリア", "k14": "物件タイプ", "k15": "すべて", "k16": "マンション", "k17": "一戸建て", "k18": "寝室数", "k19": "指定なし", "k20": "🔍 検索", "k21": "件の売却実績", "k22": "年の実績", "k23": "の顧客満足度", "k24": "ポルトガル国内の店舗", "k25": "おすすめ物件", "k26": "厳選された住まい", "k27": "今いちばん人気の物件をご紹介します。上の検索でエリア、タイプ、寝室数で絞り込めます。", "k28": "売買", "k29": "新着", "k30": "川が見える2ベッドルームのマンション", "k31": "お問い合わせ", "k32": "専任物件", "k33": "プール付き4ベッドルームの一戸建て", "k34": "賃貸", "k35": "/月", "k36": "リノベーション済み1ベッドルームのマンション", "k37": "海辺の3ベッドルームのマンション", "k38": "商談中", "k39": "庭付き3ベッドルームの一戸建て", "k40": "家具付き3ベッドルームの一戸建て", "k41": "テラス付き3ベッドルームのペントハウス", "k42": "中心部の2ベッドルームのマンション", "k43": "条件に合う物件が見つかりませんでした。未公開物件もございますので、お気軽にお問い合わせください。", "k44": "すべてお任せください", "k45": "購入、売却、賃貸をシンプルに、安全に、ストレスなく進めるためのチームです。", "k46": "売却", "k47": "無料査定、プロによる写真撮影、バーチャル内見、主要ポータルへの掲載。", "k48": "最適な物件を見つけ、内見や交渉にすべて同行します。", "k49": "入居者の審査、契約、賃貸管理まで安心してお任せいただけます。", "k50": "住宅ローン", "k51": "複数の銀行の条件を比較し、最良の融資条件を探します。", "k52": "売却をお考えですか?", "k53": "あなたの家はいくら?", "k54": "無料・義務なしの査定をお申し込みください。担当エリアのコンサルタントが24時間以内にご連絡します。", "k55": "お名前", "k56": "物件の所在地", "k57": "土地", "k58": "店舗・オフィス", "k59": "間取り(T0〜T5)", "k60": "メッセージ(任意)", "k61": "💬 WhatsAppで査定を依頼", "k62": "お客様の情報はお問い合わせへの返信にのみ使用します。", "k63": "すべての通りを知るコンサルタント", "k64": "お客様のご要望に耳を傾け、利益を守ることに注力する経験豊富なプロフェッショナルです。", "k65": "営業部長 · リスボン", "k66": "コンサルタント · カスカイス、シントラ", "k67": "コンサルタント · ポルト", "k68": "住宅ローン専門スタッフ", "k69": "お客様の声", "k70": "私たちを信頼してくださった方々", "k71": "「わずか3週間で、期待以上の価格でマンションが売れました。最初から最後までプロの対応でした。」", "k72": "リスボンで売却", "k73": "「外国人なので疑問がたくさんありましたが、NIF(納税者番号)からローンまですべて説明してもらい、理想の家が見つかりました。」", "k74": "カスカイスで購入", "k75": "「転勤で急いで部屋を借りる必要がありましたが、10日で住まいが決まりました。迷わずおすすめします。」", "k76": "ポルトで賃貸", "k77": "よくあるご質問", "k78": "ご質問にお答えします", "k79": "物件の査定に費用はかかりますか?", "k80": "いいえ。査定は無料で、義務も一切ありません。物件、エリア、現在の市場価格を分析し、現実的な価格をご提示します。", "k81": "ポルトガルで家を買うときにかかる税金は?", "k82": "購入時には不動産取得税(IMT)と印紙税がかかり、物件の価格や種類によって異なります。事前に正確な費用をご説明します。", "k83": "外国人でもポルトガルで家を買えますか?", "k84": "はい。ポルトガルの納税者番号(NIF)と銀行口座があれば購入できます。必要に応じてローン申請も含め、全プロセスをサポートします。", "k85": "住宅ローンの手続きを手伝ってもらえますか?", "k86": "はい。専門スタッフが複数の銀行の条件を比較し、登記まで手続きをサポートします。追加費用はかかりません。", "k87": "店舗へお越しください", "k88": "住所", "k89": "電話", "k90": "メール", "k91": "営業時間", "k92": "月曜日〜金曜日", "k93": "土曜日", "k94": "日曜日", "k95": "予約制", "k96": "リスボン、カスカイス、シントラ、ポルトでの購入、売却、賃貸を、すべての段階で専任スタッフがサポートします。", "k97": "メニュー", "k98": "フォローする", "k99": "無断転載禁止", "k100": "AMIライセンス番号 00000"}, "zh": {"k0": "房地产", "k1": "房源", "k2": "服务", "k3": "出售房产", "k4": "团队", "k5": "联系我们", "k6": "免费估价", "k7": "里斯本、卡斯凯什、辛特拉和波尔图的房产中介", "k8": "找到<em>开启生活的家。</em>", "k9": "精选公寓和别墅,从初次咨询到交钥匙,全程专人服务。", "k10": "购买", "k11": "租赁", "k12": "位置", "k13": "所有区域", "k14": "房产类型", "k15": "全部", "k16": "公寓", "k17": "别墅", "k18": "卧室", "k19": "不限", "k20": "🔍 搜索", "k21": "套已售房产", "k22": "年经验", "k23": "客户满意度", "k24": "家葡萄牙门店", "k25": "精选房源", "k26": "用心挑选的好房", "k27": "当前最受欢迎的房源精选。使用上方搜索,按区域、类型和卧室数量筛选。", "k28": "出售", "k29": "新上架", "k30": "两居室河景公寓", "k31": "咨询详情", "k32": "独家", "k33": "带泳池的四居室别墅", "k34": "出租", "k35": "/月", "k36": "翻新一居室公寓", "k37": "海边三居室公寓", "k38": "已预订", "k39": "带花园的三居室别墅", "k40": "带家具的三居室别墅", "k41": "带露台的三居室顶层公寓", "k42": "市中心两居室公寓", "k43": "没有找到符合条件的房源。欢迎联系我们:我们还有尚未发布的房源。", "k44": "我们为您打理一切", "k45": "完整的专业团队,让买房、卖房或租房简单、安全、省心。", "k46": "出售", "k47": "免费估价、专业摄影、虚拟看房,并在主要房产平台推广。", "k48": "为您找到合适的房产,并陪同每一次看房和谈判。", "k49": "筛选租客、签订合同和租赁管理,让您完全放心。", "k50": "房贷服务", "k51": "比较多家银行的方案,为您争取最优贷款条件。", "k52": "想要出售?", "k53": "您的房子值多少钱?", "k54": "申请免费且无义务的估价。您所在区域的顾问将在24小时内与您联系。", "k55": "姓名", "k56": "房产位置", "k57": "土地", "k58": "商铺或办公室", "k59": "户型(T0–T5)", "k60": "留言(可选)", "k61": "💬 通过WhatsApp申请估价", "k62": "您的信息仅用于回复您的申请。", "k63": "熟悉每一条街道的顾问", "k64": "经验丰富的专业人士,倾听您的需求并维护您的利益。", "k65": "销售总监 · 里斯本", "k66": "顾问 · 卡斯凯什和辛特拉", "k67": "顾问 · 波尔图", "k68": "房贷专家", "k69": "客户评价", "k70": "信任我们的客户", "k71": "“我们的公寓只用了三周就卖出,价格还高于预期。从头到尾都非常专业。”", "k72": "在里斯本出售", "k73": "“作为外国人,我们有很多疑问。他们从税号NIF到贷款都解释得很清楚,我们找到了理想的家。”", "k74": "在卡斯凯什购房", "k75": "“因为换工作需要尽快租房。十天内我就有了住处。毫不犹豫地推荐。”", "k76": "在波尔图租房", "k77": "常见问题", "k78": "为您解答疑问", "k79": "房产估价需要付费吗?", "k80": "不需要。估价免费且无任何义务。我们会分析房产、区域和当前市场价格,给出合理的报价。", "k81": "在葡萄牙买房需要缴纳哪些税?", "k82": "购房时需缴纳房产转让税(IMT)和印花税,金额因房产价格和类型而异。我们会在您决定前说明确切费用。", "k83": "外国人可以在葡萄牙买房吗?", "k84": "可以。只需葡萄牙税号(NIF)和银行账户。我们全程协助,如有需要也包括贷款申请。", "k85": "你们能协助办理房贷吗?", "k86": "可以。我们的专家会比较多家银行的方案,并跟进至签约过户,不向您收取额外费用。", "k87": "欢迎到店咨询", "k88": "地址", "k89": "电话", "k90": "邮箱", "k91": "营业时间", "k92": "周一至周五", "k93": "周六", "k94": "周日", "k95": "仅限预约", "k96": "在里斯本、卡斯凯什、辛特拉和波尔图买房、卖房和租房,每一步都有专人陪伴。", "k97": "导航", "k98": "关注我们", "k99": "版权所有", "k100": "AMI执照号 00000"}};
+  const LANG_FLAGS = {"pt": "https://flagcdn.com/w40/pt.png", "en": "https://flagcdn.com/w40/gb.png", "es": "https://flagcdn.com/w40/es.png", "fr": "https://flagcdn.com/w40/fr.png", "it": "https://flagcdn.com/w40/it.png", "de": "https://flagcdn.com/w40/de.png", "uk": "https://flagcdn.com/w40/ua.png", "ru": "https://flagcdn.com/w40/ru.png", "ja": "https://flagcdn.com/w40/jp.png", "zh": "https://flagcdn.com/w40/cn.png"};
+  const ptText = {};
+  document.querySelectorAll('[data-i18n]').forEach(el => { ptText[el.dataset.i18n] = el.innerHTML; });
+  const langBox = document.getElementById('lang');
+  function setLang(lang) {
+    if (lang !== 'pt' && !I18N[lang]) lang = 'pt';
+    const dict = I18N[lang] || {};
+    document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; el.innerHTML = dict[k] ?? ptText[k]; });
+    document.documentElement.lang = lang === 'pt' ? 'pt-PT' : lang;
+    document.getElementById('langFlag').src = LANG_FLAGS[lang];
+    document.getElementById('langCode').textContent = lang.toUpperCase();
+    document.querySelectorAll('#langMenu button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+  document.getElementById('langBtn').addEventListener('click', e => {
+    e.stopPropagation();
+    const open = langBox.classList.toggle('open');
+    e.currentTarget.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('#langMenu button').forEach(b => b.addEventListener('click', () => { setLang(b.dataset.lang); langBox.classList.remove('open'); }));
+  document.addEventListener('click', () => langBox.classList.remove('open'));
+  let saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  setLang(saved || (navigator.language || 'pt').slice(0, 2));
+</script>
+</body>
+</html>
